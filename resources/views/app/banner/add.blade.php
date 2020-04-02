@@ -64,13 +64,13 @@
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost/anterin-sayur/api/banner/create',
+            url: 'http://localhost/anterin-sayur-customer/api/banner/create',
             data: addedFile,
             contentType: false,
             processData: false,
             success: function (data) {
                 // alert("Success");
-                window.location.href="http://localhost/anterin-sayur/dashboard/banner";
+                window.location.href="http://localhost/anterin-sayur-customer/dashboard/banner";
             },
             timeout: 300000,
             error: function (e) {

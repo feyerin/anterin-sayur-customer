@@ -83,11 +83,10 @@ function getAPICart() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur/api/order/read/'+orderId,
+        url: 'http://localhost/anterin-sayur-customer/api/order/read/'+orderId,
         beforeSend: function () {},
         success: function (data) {
             const cartData = data.data.order;
-            console.log(cartData);
             const totalPrice = formatter.format(cartData.totalPrice);
             const totalDiscount = formatter.format(cartData.totalDiscount);
             const totalPayment = formatter.format(cartData.totalPayment);
@@ -111,23 +110,23 @@ function setUserData() {
     const name = $('#name').val();
     const phone = $('#phone').val();
     const address = $('#address').val();
-    // const email = $('#email').val();
+    const email = $('#email').val();
 
     var userData = new FormData();
     userData.append('orderId', orderId);
     userData.append('name', name);
     userData.append('phone', phone);
     userData.append('address', address);
-    // userData.append('email', email);
+    userData.append('email', email);
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost/anterin-sayur/api/order/set-user-data',
+        url: 'http://localhost/anterin-sayur-customer/api/order/set-user-data',
         data: userData,
         contentType: false,
         processData: false,
         success: function (data) {
-            window.location.href="http://localhost/anterin-sayur/web/confirmation";
+            window.location.href="http://localhost/anterin-sayur-customer/web/confirmation";
         },
         timeout: 300000,
         error: function (e) {

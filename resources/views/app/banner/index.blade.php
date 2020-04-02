@@ -84,7 +84,7 @@ function tableBanner() {
             style: 'single'
         },
         "ajax": {
-            "url": 'http://localhost/anterin-sayur/api/banner',
+            "url": 'http://localhost/anterin-sayur-customer/api/banner',
             "type": 'GET'
         },
         "columns": [
@@ -102,7 +102,7 @@ function deleteBanner(data) {
     $.ajax({
         type: 'POST',
         data: deletedBanner,
-        url: 'http://localhost/anterin-sayur/api/banner/delete',
+        url: 'http://localhost/anterin-sayur-customer/api/banner/delete',
         success: function (data) {
             location.reload();
         },

@@ -58,11 +58,11 @@ $( document ).ready(function() {
 function getAPICart() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur/api/order/get-cart',
+        url: 'http://localhost/anterin-sayur-customer/api/order/get-cart',
         beforeSend: function () {},
         success: function (data) {
             displayCart(data);
-            console.log(data.data.orderProduct);
+            console.log(data);
         },
         timeout: 300000,
         error: function (e) {
@@ -74,7 +74,7 @@ function getAPICart() {
 function displayCart(data) {
     const orderProduct = data.data.orderProduct;
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
-    const url = 'url("http://localhost/anterin-sayur/';
+    const url = 'url("http://localhost/anterin-sayur-customer/';
 
     let markup,
         index = 0,
@@ -130,11 +130,11 @@ function displayCart(data) {
 function checkout() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur/api/order/checkout',
+        url: 'http://localhost/anterin-sayur-customer/api/order/checkout',
         beforeSend: function () {},
         success: function (data) {
             orderId = data.params.orderId;
-            window.location.href="http://localhost/anterin-sayur/web/checkout/"+orderId;
+            window.location.href="http://localhost/anterin-sayur-customer/web/checkout/"+orderId;
         },
         timeout: 300000,
         error: function (e) {

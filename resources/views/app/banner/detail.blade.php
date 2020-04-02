@@ -62,7 +62,7 @@ function getAPIBanner() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur/api/banner/read/' + bannerId,
+        url: 'http://localhost/anterin-sayur-customer/api/banner/read/' + bannerId,
         success: function (data) {
             const bannerData = data.data;
             $('#id').val(bannerData.id);
@@ -101,13 +101,13 @@ function getAPIBanner() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost/anterin-sayur/api/banner/update',
+            url: 'http://localhost/anterin-sayur-customer/api/banner/update',
             data: addedFile,
             contentType: false,
             processData: false,
             success: function (data) {
                 // alert("Success");
-                window.location.href="http://localhost/anterin-sayur/dashboard/banner";
+                window.location.href="http://localhost/anterin-sayur-customer/dashboard/banner";
             },
             timeout: 300000,
             error: function (e) {

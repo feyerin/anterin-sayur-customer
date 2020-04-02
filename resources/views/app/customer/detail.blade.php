@@ -53,7 +53,7 @@ function getAPIProduct() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur/api/product/read/' + productId,
+        url: 'http://localhost/anterin-sayur-customer/api/product/read/' + productId,
         success: function (data) {
             const productData = data.data;
             const productImage = JSON.stringify(productData.image);
@@ -70,7 +70,7 @@ function getAPIProduct() {
             $('#product-id').html(productData.id);
             $('#product-name').html(productData.name);
             $('#product-price').html(formattedPrice);
-            $('#product-image').attr('src','http://localhost/anterin-sayur/public/'+productData.image);
+            $('#product-image').attr('src','http://localhost/anterin-sayur-customer/public/'+productData.image);
         },
         timeout: 300000,
         error: function (e) {
@@ -109,7 +109,7 @@ $('#add-to-cart').on('click', function() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost/anterin-sayur/api/order/add-to-cart',
+        url: 'http://localhost/anterin-sayur-customer/api/order/add-to-cart',
         data: addedProduct,
         contentType: false,
         processData: false,
