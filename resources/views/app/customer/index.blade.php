@@ -27,7 +27,7 @@ $( document ).ready(function() {
 function getAPIProduct() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur-customer/api/product',
+        url: "{{url('api/product')}}",
         beforeSend: function () {},
         success: function (data) {
             displayProduct(data);

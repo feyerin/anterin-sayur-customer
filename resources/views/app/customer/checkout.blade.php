@@ -83,7 +83,7 @@ function getAPICart() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur-customer/api/order/read/'+orderId,
+        url: "{{url('api/order/read')}}/"+orderId,
         beforeSend: function () {},
         success: function (data) {
             const cartData = data.data.order;
@@ -121,12 +121,12 @@ function setUserData() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost/anterin-sayur-customer/api/order/set-user-data',
+        url: "{{url('api/order/set-user-data')}}",
         data: userData,
         contentType: false,
         processData: false,
         success: function (data) {
-            window.location.href="http://localhost/anterin-sayur-customer/web/confirmation";
+            window.location.href="{{url('web/confirmation')}}";
         },
         timeout: 300000,
         error: function (e) {
