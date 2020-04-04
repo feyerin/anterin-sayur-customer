@@ -74,7 +74,7 @@ function getAPICart() {
 function displayCart(data) {
     const orderProduct = data.data.orderProduct;
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
-    const url = 'url("http://localhost/anterin-sayur-customer/';
+    const url = 'url("http://anterinsayur.id/web';
 
     let markup,
         index = 0,

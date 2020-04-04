@@ -78,7 +78,7 @@ $( document ).ready(function() {
 function getAPICart() {
     const url = window.location.href;
     const urlParams = url.split("/");
-    const orderId = urlParams[6];
+    const orderId = urlParams[urlParams.length - 1];
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
 
     $.ajax({

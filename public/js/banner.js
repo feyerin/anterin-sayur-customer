@@ -1,7 +1,7 @@
 function getAPIBanner() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost/anterin-sayur-customer/api/banner',
+        url: "{{url('api/banner')}}",
         beforeSend: function () {},
         success: function (data) {
             displayBanner(data);
@@ -15,7 +15,7 @@ function getAPIBanner() {
 
 function displayBanner(data) {
     const banner = data.data;
-    const url = 'url("http://localhost/anterin-sayur-customer/';
+    const url = 'url("http://anterinsayur.id/web';
 
     for(index=0; index<2; index++) {
         switch(index) {

@@ -48,7 +48,7 @@ $( document ).ready(function() {
 function getAPIProduct() {
     const url = window.location.href;
     const urlParams = url.split("/");
-    const productId = urlParams[7];
+    const productId = urlParams[urlParams.length - 1];
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
 
     $.ajax({
