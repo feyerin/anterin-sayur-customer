@@ -54,9 +54,11 @@ class OrderController extends Controller
             if(!empty($product)) {
                 $result['productName'] = $product->name;
                 $result['productImage'] = $product->image;
+                $result['productUrl'] = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/' . $product['images'];
             } else {
                 $result['productName'] = '';
                 $result['productImage'] = '';
+                $result['productUrl'] = '';
             }
 
             return $result;
@@ -105,9 +107,11 @@ class OrderController extends Controller
             if(!empty($product)) {
                 $result['productName'] = $product->name;
                 $result['productImage'] = $product->image;
+                $result['productUrl'] = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/' . $product['images'];
             } else {
                 $result['productName'] = '';
                 $result['productImage'] = '';
+                $result['productUrl'] = '';
             }
 
             return $result;
@@ -231,7 +235,7 @@ class OrderController extends Controller
         $mail = Mailer::sendEmail($order, $order->email);
 
         return $this->getResponse('tes', [
-            'userMail' => $order->email,
+            'userMail' => $user->email,
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'phone' => $request->input('phone'),

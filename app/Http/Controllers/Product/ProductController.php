@@ -13,8 +13,17 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('created_at')->get();
 
+        $productArray = $products->toArray();
+
+        $result = array_map(function ($row) {
+            $mapResult = $row;
+            $mapResult['imageurl'] = 'https://s3.' . env('AWS_S3_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/' . $row['image'];
+
+            return $mapResult;
+        }, $productArray);
+
         // return Response::make($products, 200);
-        return $this->getResponse($products);
+        return $this->getResponse($result);
     }
 
     public function read($id)
@@ -25,7 +34,10 @@ class ProductController extends Controller
             return $this->throwError(404);
         }
 
+        $result = $product->toArray();
+        $result['imageUrl'] = 'https://s3.' . env('AWS_S3_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/' . $product['image'];
+
         // return Response::make($product, 200);
-        return $this->getResponse($product);
+        return $this->getResponse($result);
     }
 }
