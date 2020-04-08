@@ -58,7 +58,7 @@ function displayProduct(data) {
             productId = product[index].id;
             productName = product[index].name;
             productStock = product[index].quantity;
-            productImage = product[index].image;
+            productImage = product[index].imageurl;
             productPrice = product[index].price;
             productDiscount = product[index].discountPrice;
             productTotalDiscount = product[index].totalDiscount;

@@ -62,7 +62,6 @@ function getAPICart() {
         beforeSend: function () {},
         success: function (data) {
             displayCart(data);
-            console.log(data);
         },
         timeout: 300000,
         error: function (e) {

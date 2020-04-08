@@ -56,7 +56,7 @@ function getAPIProduct() {
         url: "{{url('api/product/read')}}/" + productId,
         success: function (data) {
             const productData = data.data;
-            const productImage = JSON.stringify(productData.image);
+            const productImage = JSON.stringify(productData.imageurl);
             const formattedPrice = formatter.format(productData.price);
 
             if(productData.totalDiscount !== null) {

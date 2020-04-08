@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('public/templates/web/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('public/templates/web/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('public/templates/web/css/style.css')}}">
+    <link rel='icon' href='{{url('public/images/logo/favicon.ico')}}' type='image/x-icon'>
     @yield('styles')
 </head>
 <body class="goto-here">
