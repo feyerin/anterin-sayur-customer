@@ -105,7 +105,7 @@ function getAPICart() {
 function setUserData() {
     const url = window.location.href;
     const urlParams = url.split("/");
-    const orderId = urlParams[6];
+    const orderId = urlParams[urlParams.length - 1];
     
     const name = $('#name').val();
     const phone = $('#phone').val();
