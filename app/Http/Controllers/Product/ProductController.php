@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Response;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index($page, $size)
     {
-        $products = Product::orderBy('created_at')->get();
+        $skip = ($page - 1) * $size;
+        $products = Product::orderBy('created_at')->skip($skip)->limit($size)->get();
 
         $productArray = $products->toArray();
 
@@ -23,7 +24,10 @@ class ProductController extends Controller
         }, $productArray);
 
         // return Response::make($products, 200);
-        return $this->getResponse($result);
+        return $this->getResponse($result, [
+            'page' => $page,
+            'size' => $size
+        ]);
     }
 
     public function read($id)
