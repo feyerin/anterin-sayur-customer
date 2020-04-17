@@ -14,6 +14,9 @@ class ProductController extends Controller
         $skip = ($page - 1) * $size;
         $products = Product::orderBy('created_at')->skip($skip)->limit($size)->get();
 
+        $total = Product::count();
+        $totalPage = ceil($total / $size);
+
         $productArray = $products->toArray();
 
         $result = array_map(function ($row) {
@@ -26,7 +29,8 @@ class ProductController extends Controller
         // return Response::make($products, 200);
         return $this->getResponse($result, [
             'page' => $page,
-            'size' => $size
+            'size' => $size,
+            'totalPage' => $totalPage
         ]);
     }
 
