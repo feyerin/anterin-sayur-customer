@@ -34,6 +34,7 @@ Route::post('/api/order/set-user-data', 'Order\OrderController@setUserData');
 //-----------------
 
 Route::get('/', 'Customer\CustomerController@indexCustomer');
+Route::get('/{page}', 'Customer\CustomerController@indexCustomer');
 Route::get('/web/product/detail/{id}', 'Customer\CustomerController@readProduct');
 Route::get('/web/cart', 'Customer\CustomerController@cart');
 Route::get('/web/checkout/{id}', 'Customer\CustomerController@checkout');

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('public/templates/web/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('public/templates/web/css/style.css')}}">
     <link rel='icon' href='{{url('public/images/logo/favicon.ico')}}' type='image/x-icon'>
+    <link rel="stylesheet" href="https://pagination.js.org/dist/2.1.5/pagination.css">
     @yield('styles')
 </head>
 <body class="goto-here">
@@ -75,6 +76,8 @@
     <script src="{{asset('public/templates/web/js/scrollax.min.js')}}"></script>
     <script src="{{asset('public/templates/web/js/main.js')}}"></script>
     <script src="{{asset('public/js/banner.js')}}"></script>
+    <script src="{{asset('public/js/pagination.js')}}"></script>
+    {{-- <script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script> --}}
 
     <script>
         $( document ).ready(function() {

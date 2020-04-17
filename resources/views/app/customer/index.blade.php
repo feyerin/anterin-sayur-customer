@@ -1,6 +1,29 @@
 @extends('layouts.web.default')
 @section('title', 'Anterin Sayur')
 
+@section('styles')
+<style>
+.pagination {
+    justify-content: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center mb-3 pb-3">
@@ -12,22 +35,44 @@
     </div>   		
 </div>
 <div class="container">
-        <div id="list-product" class="row">
+    <div id="list-product" class="row">
 
+    </div>
+    <div class="pagination" id="page">
+        <a href="{{url('/')}}">&laquo;</a>
+        <div id="page-list">
+            
         </div>
+        <a href="{{url('/')}}">&raquo;</a>
+    </div>
 </div>
 @endsection
 
 @section('scripts')
 <script>
 $( document ).ready(function() {
-    getAPIProduct();
+    loadProduct();
 });
 
-function getAPIProduct() {
+function loadProduct() {
+    const url = window.location.href;
+    const urlParams = url.split("/");
+    var page = urlParams[urlParams.length - 1];
+
+    if(page) {
+        getAPIProduct(page);
+    } else {
+        page = 1; // Default value page
+        getAPIProduct(page);
+    }
+}
+
+function getAPIProduct(data) {
+    const limit = 8; // Default value item per page
+
     $.ajax({
         type: 'GET',
-        url: "{{url('api/product')}}",
+        url: "{{url('api/product')}}/" + data + "/" + limit,
         beforeSend: function () {},
         success: function (data) {
             displayProduct(data);
@@ -41,9 +86,11 @@ function getAPIProduct() {
 
 function displayProduct(data) {
     const product = data.data;
+    const totalPage = data.params.totalPage;
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
 
     let markup,
+        markupPage,
         index = 0;
     let productId,
         productName,
@@ -93,6 +140,28 @@ function displayProduct(data) {
             $('#list-product').append(markup);
         }
     }
+
+    for(index = 1; index <= totalPage; index++) {
+        markupPage = `<a href="{{url('/`+ index +`')}}">`+ index +`</a>`;
+        $('#page-list').append(markupPage);
+    }
+}
+
+function pagination() {
+    var value = $('#page').val();
+
+    $.ajax({
+        type: 'GET',
+        url: "{{url('api/product/1/2')}}",
+        beforeSend: function () {},
+        success: function (data) {
+            displayProduct(data);
+        },
+        timeout: 300000,
+        error: function (e) {
+            console.log(e);
+        }
+    });
 }
 </script>
 @endsection
