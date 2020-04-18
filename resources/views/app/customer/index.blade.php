@@ -15,12 +15,10 @@
     transition: background-color .3s;
 }
 
-.pagination a.active {
-    background-color: dodgerblue;
-    color: white;
+.page-indicator {
+    color: black;
+    padding: 8px 00px;
 }
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 @endsection
 
@@ -39,11 +37,7 @@
 
     </div>
     <div class="pagination" id="page">
-        <a href="{{url('/')}}">&laquo;</a>
-        <div id="page-list">
-            
-        </div>
-        <a href="{{url('/')}}">&raquo;</a>
+        
     </div>
 </div>
 @endsection
@@ -72,7 +66,7 @@ function getAPIProduct(data) {
 
     $.ajax({
         type: 'GET',
-        url: "{{url('api/product')}}/" + data + "/" + limit,
+        url: "{{url('api/all-product')}}/" + data + "/" + limit,
         beforeSend: function () {},
         success: function (data) {
             displayProduct(data);
@@ -86,6 +80,7 @@ function getAPIProduct(data) {
 
 function displayProduct(data) {
     const product = data.data;
+    const currentPage = parseInt(data.params.page);
     const totalPage = data.params.totalPage;
     const formatter = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' });
 
@@ -140,28 +135,17 @@ function displayProduct(data) {
             $('#list-product').append(markup);
         }
     }
-
-    for(index = 1; index <= totalPage; index++) {
-        markupPage = `<a href="{{url('/`+ index +`')}}">`+ index +`</a>`;
-        $('#page-list').append(markupPage);
+    
+    if(currentPage == 1) {
+        markupPage = `<span class="page-indicator">Page `+ currentPage +` of `+ totalPage +` | </span><a href="{{url('/`+ (currentPage + 1) +`')}}">Next</a>`;
+        $('#page').append(markupPage);
+    } else {
+        markupPage = `
+                    <a href="{{url('/`+ (currentPage - 1) +`')}}" id="prevPage">Previous</a><span class="page-indicator"> | Page `+ currentPage +` of `+ totalPage +` | </span>
+                    <a href="{{url('/`+ (currentPage + 1) +`')}}">Next</a>
+                `;
+        $('#page').append(markupPage);
     }
-}
-
-function pagination() {
-    var value = $('#page').val();
-
-    $.ajax({
-        type: 'GET',
-        url: "{{url('api/product/1/2')}}",
-        beforeSend: function () {},
-        success: function (data) {
-            displayProduct(data);
-        },
-        timeout: 300000,
-        error: function (e) {
-            console.log(e);
-        }
-    });
 }
 </script>
 @endsection
